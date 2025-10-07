@@ -20,7 +20,6 @@
             overflow-x: hidden;
         }
 
-        /* Animated background elements */
         .bg-decoration {
             position: fixed;
             opacity: 0.1;
@@ -65,24 +64,20 @@
             display: flex;
             align-items: center;
             gap: 15px;
-            
         }
 
         .logo {
-            width: 160px;
+            width: 120px;
             height: 80px;
             display: flex;
             align-items: center;
             justify-content: center;
             overflow: hidden;
-            padding: 5px;
-            
         }
 
         .logo img {
-            width: 300%;
-            height: 300%;
-            backgound: green
+            width: 100%;
+            height: 100%;
             object-fit: contain;
         }
 
@@ -190,12 +185,12 @@
             line-height: 1.5;
         }
 
-        .notify-section {
+        .entry-section {
             margin-top: 50px;
             animation: fadeIn 2s ease-out;
         }
 
-        .notify-container {
+        .entry-container {
             background: rgba(255, 255, 255, 0.2);
             backdrop-filter: blur(10px);
             border-radius: 20px;
@@ -204,25 +199,25 @@
             max-width: 500px;
         }
 
-        .notify-container h2 {
+        .entry-container h2 {
             color: white;
             font-size: 28px;
             margin-bottom: 15px;
         }
 
-        .notify-container p {
+        .entry-container p {
             color: #e8f5e9;
             font-size: 16px;
             margin-bottom: 25px;
         }
 
-        .email-form {
+        .entry-form {
             display: flex;
             gap: 10px;
             flex-wrap: wrap;
         }
 
-        .email-input {
+        .card-input {
             flex: 1;
             min-width: 200px;
             padding: 15px 20px;
@@ -234,11 +229,11 @@
             transition: box-shadow 0.3s ease;
         }
 
-        .email-input:focus {
+        .card-input:focus {
             box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.5);
         }
 
-        .notify-button {
+        .entry-button {
             padding: 15px 35px;
             background: #1a5f3a;
             color: white;
@@ -250,24 +245,14 @@
             transition: all 0.3s ease;
         }
 
-        .notify-button:hover {
+        .entry-button:hover {
             background: #145030;
             transform: translateY(-2px);
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
         }
 
-        .notify-button:active {
+        .entry-button:active {
             transform: translateY(0);
-        }
-
-        .success-message {
-            display: none;
-            color: #c8e6c9;
-            font-size: 14px;
-            margin-top: 15px;
-            padding: 10px;
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 8px;
         }
 
         footer {
@@ -293,6 +278,354 @@
             text-decoration: underline;
         }
 
+        /* Registration Page Styles */
+        .page {
+            display: none;
+        }
+
+        .page.active {
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        .registration-container {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 40px 20px;
+        }
+
+        .registration-form {
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 40px;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            max-width: 600px;
+            width: 100%;
+        }
+
+        .registration-form h1 {
+            color: white;
+            font-size: 36px;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            color: white;
+            font-size: 16px;
+            margin-bottom: 8px;
+            font-weight: 500;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 15px 20px;
+            border: none;
+            border-radius: 10px;
+            font-size: 16px;
+            outline: none;
+            background: white;
+            transition: box-shadow 0.3s ease;
+        }
+
+        .form-group input:focus {
+            box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.5);
+        }
+
+        .create-card-button {
+            width: 100%;
+            padding: 18px;
+            background: #1a5f3a;
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 20px;
+        }
+
+        .create-card-button:hover {
+            background: #145030;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Homepage Styles */
+        .home-page {
+            background: white;
+        }
+
+        .home-page.dark-mode {
+            background: #1a1a1a;
+        }
+
+        .home-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 40px;
+            background: #1a5f3a;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .home-page.dark-mode .home-header {
+            background: #0d2f1d;
+        }
+
+        .home-logo-container {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .home-logo {
+            width: 80px;
+            height: 50px;
+        }
+
+        .home-logo img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
+        .home-brand-name {
+            font-size: 28px;
+            font-weight: bold;
+            color: white;
+        }
+
+        .header-controls {
+            display: flex;
+            align-items: center;
+            gap: 25px;
+        }
+
+        .menu-toggle {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 28px;
+            cursor: pointer;
+            padding: 5px 10px;
+        }
+
+        .theme-toggle {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .theme-toggle span {
+            color: white;
+            font-size: 14px;
+        }
+
+        .toggle-switch {
+            position: relative;
+            width: 50px;
+            height: 26px;
+            background: rgba(255, 255, 255, 0.3);
+            border-radius: 13px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .toggle-switch.active {
+            background: #4a9b6f;
+        }
+
+        .toggle-slider {
+            position: absolute;
+            top: 3px;
+            left: 3px;
+            width: 20px;
+            height: 20px;
+            background: white;
+            border-radius: 50%;
+            transition: transform 0.3s;
+        }
+
+        .toggle-switch.active .toggle-slider {
+            transform: translateX(24px);
+        }
+
+        .sidebar {
+            position: fixed;
+            left: -300px;
+            top: 0;
+            width: 300px;
+            height: 100vh;
+            background: white;
+            box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
+            transition: left 0.3s ease;
+            z-index: 1000;
+            padding: 20px;
+        }
+
+        .sidebar.active {
+            left: 0;
+        }
+
+        .home-page.dark-mode .sidebar {
+            background: #2a2a2a;
+        }
+
+        .sidebar-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 2px solid #e0e0e0;
+        }
+
+        .home-page.dark-mode .sidebar-header {
+            border-bottom-color: #444;
+        }
+
+        .sidebar-title {
+            font-size: 24px;
+            font-weight: bold;
+            color: #1a5f3a;
+        }
+
+        .home-page.dark-mode .sidebar-title {
+            color: #4a9b6f;
+        }
+
+        .close-sidebar {
+            background: none;
+            border: none;
+            font-size: 28px;
+            cursor: pointer;
+            color: #666;
+        }
+
+        .home-page.dark-mode .close-sidebar {
+            color: #ccc;
+        }
+
+        .sidebar-menu {
+            list-style: none;
+        }
+
+        .sidebar-menu li {
+            margin-bottom: 15px;
+        }
+
+        .sidebar-menu a {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            padding: 15px;
+            text-decoration: none;
+            color: #333;
+            border-radius: 10px;
+            transition: all 0.3s ease;
+            font-size: 16px;
+        }
+
+        .home-page.dark-mode .sidebar-menu a {
+            color: #e0e0e0;
+        }
+
+        .sidebar-menu a:hover {
+            background: #f0f0f0;
+            transform: translateX(5px);
+        }
+
+        .home-page.dark-mode .sidebar-menu a:hover {
+            background: #3a3a3a;
+        }
+
+        .sidebar-menu .icon {
+            font-size: 24px;
+        }
+
+        .home-content {
+            padding: 40px;
+            min-height: calc(100vh - 90px);
+        }
+
+        .home-page.dark-mode .home-content {
+            color: #e0e0e0;
+        }
+
+        .card-display {
+            position: fixed;
+            top: 120px;
+            right: 40px;
+            width: 350px;
+            background: white;
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .home-page.dark-mode .card-display {
+            background: #2a2a2a;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+        }
+
+        .card-display h3 {
+            color: #1a5f3a;
+            margin-bottom: 15px;
+            font-size: 20px;
+        }
+
+        .home-page.dark-mode .card-display h3 {
+            color: #4a9b6f;
+        }
+
+        .card-info {
+            margin-bottom: 10px;
+        }
+
+        .card-info strong {
+            color: #2d8659;
+        }
+
+        .home-page.dark-mode .card-info strong {
+            color: #66b88f;
+        }
+
+        .welcome-section {
+            max-width: 800px;
+        }
+
+        .welcome-section h1 {
+            font-size: 48px;
+            color: #1a5f3a;
+            margin-bottom: 20px;
+        }
+
+        .home-page.dark-mode .welcome-section h1 {
+            color: #4a9b6f;
+        }
+
+        .welcome-section p {
+            font-size: 18px;
+            line-height: 1.6;
+            color: #666;
+            margin-bottom: 15px;
+        }
+
+        .home-page.dark-mode .welcome-section p {
+            color: #ccc;
+        }
+
         @media (max-width: 768px) {
             .coming-soon {
                 font-size: 56px;
@@ -310,113 +643,257 @@
                 font-size: 24px;
             }
 
-            .feature-cards {
-                gap: 20px;
-            }
-
             .card {
                 width: 100%;
                 max-width: 350px;
+            }
+
+            .card-display {
+                position: static;
+                width: 100%;
+                margin-top: 30px;
             }
         }
     </style>
 </head>
 <body>
-    <div class="bg-decoration leaf1"></div>
-    <div class="bg-decoration leaf2"></div>
+    <!-- Landing Page -->
+    <div id="landingPage" class="page active">
+        <div class="bg-decoration leaf1"></div>
+        <div class="bg-decoration leaf2"></div>
 
-    <header>
-        <div class="logo-container">
-            <div class="logo">
-                <img src="logo_main_1.webp" alt="CropzCard Logo" id="logoImage">
+        <header>
+            <div class="logo-container">
+                <div class="logo">
+                    <img src="logo.png" alt="CropzCard Logo" id="logoImage">
+                </div>
+                <span class="brand-name">CropzCard</span>
             </div>
-            <span class="brand-name">CropzCard</span>
-        </div>
-    </header>
+        </header>
 
-    <main>
-        <h1 class="coming-soon">Coming Soon..</h1>
-        <p class="tagline">Agri.Business.Connect.</p>
+        <main>
+            <h1 class="coming-soon">Coming Soon..</h1>
+            <p class="tagline">Agri.Business.Connect.</p>
 
-        <div class="feature-cards">
-            <div class="card">
-                <div class="card-icon">🌾</div>
-                <h3>Farm Management</h3>
-                <p>Streamline your agricultural operations with smart tools</p>
-            </div>
-            <div class="card">
-                <div class="card-icon">💳</div>
-                <h3>Digital Payments</h3>
-                <p>Secure and fast transactions for agricultural products</p>
-            </div>
-            <div class="card">
-                <div class="card-icon">🤝</div>
-                <h3>Business Network</h3>
-                <p>Connect with suppliers, buyers, and agricultural experts</p>
-            </div>
-        </div>
-
-        <div class="notify-section">
-            <div class="notify-container">
-                <h2>Get Notified</h2>
-                <p>Be the first to know when we launch!</p>
-                <form class="email-form" id="notifyForm">
-                    <input type="email" class="email-input" placeholder="Enter your email" required id="emailInput">
-                    <button type="submit" class="notify-button">Notify Me</button>
-                </form>
-                <div class="success-message" id="successMessage">
-                    ✓ Thank you! We'll notify you when we launch.
+            <div class="feature-cards">
+                <div class="card">
+                    <div class="card-icon">🌾</div>
+                    <h3>Farm Management</h3>
+                    <p>Streamline your agricultural operations with smart tools</p>
+                </div>
+                <div class="card">
+                    <div class="card-icon">💳</div>
+                    <h3>Digital Payments</h3>
+                    <p>Secure and fast transactions for agricultural products</p>
+                </div>
+                <div class="card">
+                    <div class="card-icon">🤝</div>
+                    <h3>Business Network</h3>
+                    <p>Connect with suppliers, buyers, and agricultural experts</p>
                 </div>
             </div>
-        </div>
-    </main>
 
-    <footer>
-        <p>&copy; 2025 CropzCard. Revolutionizing Agricultural Business.</p>
-        <div class="footer-links">
-            <a href="#about">About Us</a>
+            <div class="entry-section">
+                <div class="entry-container">
+                    <h2>Create Your CropzCard</h2>
+                    <p>Enter your card number to get started</p>
+                    <form class="entry-form" id="entryForm">
+                        <input type="text" class="card-input" placeholder="Enter CropzCard Number" required id="cardNumberInput">
+                        <button type="submit" class="entry-button">Get Started</button>
+                    </form>
+                </div>
+            </div>
+        </main>
+
+        <footer>
+            <p>&copy; 2025 CropzCard. Revolutionizing Agricultural Business.</p>
+            <div class="footer-links">
+                <a href="#about">About Us</a>
+            </div>
+        </footer>
+    </div>
+
+    <!-- Registration Page -->
+    <div id="registrationPage" class="page">
+        <div class="bg-decoration leaf1"></div>
+        <div class="bg-decoration leaf2"></div>
+
+        <header>
+            <div class="logo-container">
+                <div class="logo">
+                    <img src="logo.png" alt="CropzCard Logo" id="logoImage2">
+                </div>
+                <span class="brand-name">CropzCard</span>
+            </div>
+        </header>
+
+        <div class="registration-container">
+            <form class="registration-form" id="registrationForm">
+                <h1>Register Your Shop</h1>
+                
+                <div class="form-group">
+                    <label for="shopName">Shop Name</label>
+                    <input type="text" id="shopName" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="phoneNumber">Phone Number</label>
+                    <input type="tel" id="phoneNumber" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="addressLine1">Address Line 1</label>
+                    <input type="text" id="addressLine1" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="addressLine2">Address Line 2</label>
+                    <input type="text" id="addressLine2" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="addressLine3">Address Line 3</label>
+                    <input type="text" id="addressLine3" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="gstNumber">GST License Number</label>
+                    <input type="text" id="gstNumber" required>
+                </div>
+
+                <button type="submit" class="create-card-button">Create Card</button>
+            </form>
         </div>
-    </footer>
+
+        <footer>
+            <p>&copy; 2025 CropzCard. Revolutionizing Agricultural Business.</p>
+        </footer>
+    </div>
+
+    <!-- Home Page -->
+    <div id="homePage" class="page home-page">
+        <header class="home-header">
+            <div class="home-logo-container">
+                <button class="menu-toggle" id="menuToggle">☰</button>
+                <div class="home-logo">
+                    <img src="logo.png" alt="CropzCard Logo" id="logoImage3">
+                </div>
+                <span class="home-brand-name">CropzCard</span>
+            </div>
+
+            <div class="header-controls">
+                <div class="theme-toggle">
+                    <span>🌙</span>
+                    <div class="toggle-switch" id="themeToggle">
+                        <div class="toggle-slider"></div>
+                    </div>
+                    <span>☀️</span>
+                </div>
+            </div>
+        </header>
+
+        <div class="sidebar" id="sidebar">
+            <div class="sidebar-header">
+                <h2 class="sidebar-title">Farmer Tools</h2>
+                <button class="close-sidebar" id="closeSidebar">×</button>
+            </div>
+            <ul class="sidebar-menu">
+                <li><a href="#dashboard"><span class="icon">📊</span> Dashboard</a></li>
+                <li><a href="#contacts"><span class="icon">📞</span> Contacts</a></li>
+                <li><a href="#marketplace"><span class="icon">🛒</span> Marketplace</a></li>
+                <li><a href="#weather"><span class="icon">🌤️</span> Weather</a></li>
+                <li><a href="#crops"><span class="icon">🌱</span> Crop Management</a></li>
+                <li><a href="#finance"><span class="icon">💰</span> Finance</a></li>
+                <li><a href="#settings"><span class="icon">⚙️</span> Settings</a></li>
+            </ul>
+        </div>
+
+        <div class="home-content">
+            <div class="welcome-section">
+                <h1>Welcome to CropzCard</h1>
+                <p>Your digital companion for modern agriculture business. Manage your farm operations, connect with buyers and suppliers, and grow your agricultural business with confidence.</p>
+                <p>Use the sidebar to access various farming tools and utilities designed specifically for farmers like you.</p>
+            </div>
+
+            <div class="card-display" id="cardDisplay">
+                <h3>Your CropzCard</h3>
+                <div class="card-info"><strong>Shop:</strong> <span id="displayShopName">-</span></div>
+                <div class="card-info"><strong>Phone:</strong> <span id="displayPhone">-</span></div>
+                <div class="card-info"><strong>Address:</strong><br><span id="displayAddress">-</span></div>
+                <div class="card-info"><strong>GST:</strong> <span id="displayGST">-</span></div>
+            </div>
+        </div>
+    </div>
 
     <script>
-        // Load the actual logo image using FileReader
-        async function loadLogo() {
+        // Load logo images
+        async function loadLogos() {
             try {
-                const logoImg = document.getElementById('logoImage');
-                // Read the uploaded file
                 const fileData = await window.fs.readFile('tmpFiles/image-1727849696293.png');
-                
-                // Convert to blob and create object URL
                 const blob = new Blob([fileData], { type: 'image/png' });
                 const url = URL.createObjectURL(blob);
                 
-                logoImg.src = url;
+                document.getElementById('logoImage').src = url;
+                document.getElementById('logoImage2').src = url;
+                document.getElementById('logoImage3').src = url;
             } catch (error) {
                 console.error('Error loading logo:', error);
-                // Fallback: keep the placeholder
             }
         }
         
-        // Load logo on page load
-        loadLogo();
-        
-        // Handle form submission
-        document.getElementById('notifyForm').addEventListener('submit', function(e) {
+        loadLogos();
+
+        // Page navigation
+        function showPage(pageId) {
+            document.querySelectorAll('.page').forEach(page => {
+                page.classList.remove('active');
+            });
+            document.getElementById(pageId).classList.add('active');
+        }
+
+        // Entry form submission
+        document.getElementById('entryForm').addEventListener('submit', function(e) {
             e.preventDefault();
-            const email = document.getElementById('emailInput').value;
-            const successMsg = document.getElementById('successMessage');
+            showPage('registrationPage');
+        });
+
+        // Registration form submission
+        const shopData = {};
+        document.getElementById('registrationForm').addEventListener('submit', function(e) {
+            e.preventDefault();
             
-            // Here you would typically send the email to your backend
-            console.log('Email submitted:', email);
-            
-            // Show success message
-            successMsg.style.display = 'block';
-            document.getElementById('emailInput').value = '';
-            
-            // Hide message after 5 seconds
-            setTimeout(() => {
-                successMsg.style.display = 'none';
-            }, 5000);
+            shopData.shopName = document.getElementById('shopName').value;
+            shopData.phone = document.getElementById('phoneNumber').value;
+            shopData.address1 = document.getElementById('addressLine1').value;
+            shopData.address2 = document.getElementById('addressLine2').value;
+            shopData.address3 = document.getElementById('addressLine3').value;
+            shopData.gst = document.getElementById('gstNumber').value;
+
+            // Display on card
+            document.getElementById('displayShopName').textContent = shopData.shopName;
+            document.getElementById('displayPhone').textContent = shopData.phone;
+            document.getElementById('displayAddress').innerHTML = 
+                shopData.address1 + '<br>' + 
+                shopData.address2 + '<br>' + 
+                shopData.address3;
+            document.getElementById('displayGST').textContent = shopData.gst;
+
+            showPage('homePage');
+        });
+
+        // Sidebar toggle
+        document.getElementById('menuToggle').addEventListener('click', function() {
+            document.getElementById('sidebar').classList.toggle('active');
+        });
+
+        document.getElementById('closeSidebar').addEventListener('click', function() {
+            document.getElementById('sidebar').classList.remove('active');
+        });
+
+        // Theme toggle
+        document.getElementById('themeToggle').addEventListener('click', function() {
+            this.classList.toggle('active');
+            document.getElementById('homePage').classList.toggle('dark-mode');
         });
     </script>
 </body>
