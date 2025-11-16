@@ -665,7 +665,7 @@
         <header>
             <div class="logo-container">
                 <div class="logo">
-                    <img src="logo.png" alt="CropzCard Logo" id="logoImage">
+                    <img src="logo_main_1.webp" alt="CropzCard Logo" id="logoImage">
                 </div>
                 <span class="brand-name">CropzCard</span>
             </div>
@@ -721,7 +721,7 @@
         <header>
             <div class="logo-container">
                 <div class="logo">
-                    <img src="cropzcard_logo.jpg" alt="CropzCard Logo" id="logoImage2">
+                    <img src="logo_main_1.webp" alt="CropzCard Logo" id="logoImage2">
                 </div>
                 <span class="brand-name">CropzCard</span>
             </div>
@@ -776,7 +776,7 @@
             <div class="home-logo-container">
                 <button class="menu-toggle" id="menuToggle">☰</button>
                 <div class="home-logo">
-                    <img src="logo.png" alt="CropzCard Logo" id="logoImage3">
+                    <img src="logo_main_1.webp" alt="CropzCard Logo" id="logoImage3">
                 </div>
                 <span class="home-brand-name">CropzCard</span>
             </div>
@@ -826,22 +826,7 @@
     </div>
 
     <script>
-        // Load logo images
-        async function loadLogos() {
-            try {
-                const fileData = await window.fs.readFile('tmpFiles/image-1727849696293.png');
-                const blob = new Blob([fileData], { type: 'image/png' });
-                const url = URL.createObjectURL(blob);
-                
-                document.getElementById('logoImage').src = url;
-                document.getElementById('logoImage2').src = url;
-                document.getElementById('logoImage3').src = url;
-            } catch (error) {
-                console.error('Error loading logo:', error);
-            }
-        }
-        
-        loadLogos();
+        // Logo images are loaded directly via src attribute in HTML
 
         // Page navigation
         function showPage(pageId) {
