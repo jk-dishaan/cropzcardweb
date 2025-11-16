@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CropzCard - Coming Soon</title>
+    <script src="https://cdn.jsdelivr.net/npm/qrcode-generator@1.4.4/qrcode.min.js"></script>
     <style>
         * {
             margin: 0;
@@ -550,6 +551,18 @@
             background: #3a3a3a;
         }
 
+        .sidebar-menu a:active,
+        .sidebar-menu a.selected {
+            background: #1a5f3a;
+            color: white;
+        }
+
+        .home-page.dark-mode .sidebar-menu a:active,
+        .home-page.dark-mode .sidebar-menu a.selected {
+            background: #2d8659;
+            color: white;
+        }
+
         .sidebar-menu .icon {
             font-size: 24px;
         }
@@ -572,6 +585,9 @@
             border-radius: 15px;
             padding: 25px;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
         }
 
         .home-page.dark-mode .card-display {
@@ -599,6 +615,60 @@
 
         .home-page.dark-mode .card-info strong {
             color: #66b88f;
+        }
+
+        .card-photo-display {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin: 10px auto;
+            border: 3px solid #1a5f3a;
+        }
+
+        .home-page.dark-mode .card-photo-display {
+            border-color: #4a9b6f;
+        }
+
+        .card-qr-display {
+            width: 150px;
+            height: 150px;
+            margin: 10px auto;
+            background: white;
+            padding: 10px;
+            border-radius: 10px;
+        }
+
+        .card-qr-display img {
+            width: 100%;
+            height: 100%;
+        }
+
+        .download-card-btn {
+            margin-top: 15px;
+            padding: 12px 20px;
+            background: #1a5f3a;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .download-card-btn:hover {
+            background: #145030;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        .home-page.dark-mode .download-card-btn {
+            background: #2d8659;
+        }
+
+        .home-page.dark-mode .download-card-btn:hover {
+            background: #4a9b6f;
         }
 
         .welcome-section {
@@ -762,6 +832,11 @@
                     <input type="text" id="gstNumber" required>
                 </div>
 
+                <div class="form-group">
+                    <label for="cardPhoto">Profile Photo (Optional)</label>
+                    <input type="file" id="cardPhoto" accept="image/*">
+                </div>
+
                 <button type="submit" class="create-card-button">Create Card</button>
             </form>
         </div>
@@ -818,10 +893,13 @@
 
             <div class="card-display" id="cardDisplay">
                 <h3>Your CropzCard</h3>
+                <img id="displayPhoto" class="card-photo-display" style="display: none;" alt="Profile Photo">
                 <div class="card-info"><strong>Shop:</strong> <span id="displayShopName">-</span></div>
                 <div class="card-info"><strong>Phone:</strong> <span id="displayPhone">-</span></div>
                 <div class="card-info"><strong>Address:</strong><br><span id="displayAddress">-</span></div>
                 <div class="card-info"><strong>GST:</strong> <span id="displayGST">-</span></div>
+                <div class="card-qr-display" id="displayQR"></div>
+                <button class="download-card-btn" id="downloadCardBtn">Download Your Card</button>
             </div>
         </div>
     </div>
@@ -847,6 +925,7 @@
 
         // Registration form submission
         const shopData = {};
+        let uploadedPhotoData = null;
         document.getElementById('registrationForm').addEventListener('submit', function(e) {
             e.preventDefault();
 
@@ -856,7 +935,23 @@
             shopData.address2 = document.getElementById('addressLine2').value;
             shopData.address3 = document.getElementById('addressLine3').value;
             shopData.gst = document.getElementById('gstNumber').value;
+            shopData.cardNumber = document.getElementById('cardNumberInput').value;
 
+            // Handle photo upload
+            const photoInput = document.getElementById('cardPhoto');
+            if (photoInput.files && photoInput.files[0]) {
+                const reader = new FileReader();
+                reader.onload = function(event) {
+                    uploadedPhotoData = event.target.result;
+                    displayCardData();
+                };
+                reader.readAsDataURL(photoInput.files[0]);
+            } else {
+                displayCardData();
+            }
+        });
+
+        function displayCardData() {
             // Display on card
             document.getElementById('displayShopName').textContent = shopData.shopName;
             document.getElementById('displayPhone').textContent = shopData.phone;
@@ -866,8 +961,31 @@
                 shopData.address3;
             document.getElementById('displayGST').textContent = shopData.gst;
 
+            // Display photo if uploaded
+            const photoDisplay = document.getElementById('displayPhoto');
+            if (uploadedPhotoData) {
+                photoDisplay.src = uploadedPhotoData;
+                photoDisplay.style.display = 'block';
+            }
+
+            // Generate unique QR code
+            const uniqueData = JSON.stringify({
+                cardNumber: shopData.cardNumber,
+                shopName: shopData.shopName,
+                phone: shopData.phone,
+                address: `${shopData.address1}, ${shopData.address2}, ${shopData.address3}`,
+                gst: shopData.gst,
+                timestamp: Date.now()
+            });
+
+            const qr = qrcode(0, 'M');
+            qr.addData(uniqueData);
+            qr.make();
+            
+            document.getElementById('displayQR').innerHTML = qr.createImgTag(4, 8);
+
             showPage('homePage');
-        });
+        }
 
         // Sidebar toggle
         document.getElementById('menuToggle').addEventListener('click', function() {
@@ -882,6 +1000,110 @@
         document.getElementById('themeToggle').addEventListener('click', function() {
             this.classList.toggle('active');
             document.getElementById('homePage').classList.toggle('dark-mode');
+        });
+
+        // Download CropzCard functionality
+        document.getElementById('downloadCardBtn').addEventListener('click', function() {
+            const cardDisplay = document.getElementById('cardDisplay');
+            
+            // Create a canvas to capture the card
+            const canvas = document.createElement('canvas');
+            const ctx = canvas.getContext('2d');
+            
+            // Set canvas size
+            canvas.width = 800;
+            canvas.height = 1000;
+            
+            // Determine if dark mode is active
+            const isDarkMode = document.getElementById('homePage').classList.contains('dark-mode');
+            
+            // Background
+            ctx.fillStyle = isDarkMode ? '#2a2a2a' : 'white';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+            
+            // Title
+            ctx.fillStyle = isDarkMode ? '#4a9b6f' : '#1a5f3a';
+            ctx.font = 'bold 36px Segoe UI';
+            ctx.fillText('Your CropzCard', 50, 60);
+            
+            let yPos = 120;
+            
+            // Photo if available
+            if (uploadedPhotoData) {
+                const img = new Image();
+                img.onload = function() {
+                    ctx.save();
+                    ctx.beginPath();
+                    ctx.arc(400, yPos + 60, 60, 0, Math.PI * 2);
+                    ctx.closePath();
+                    ctx.clip();
+                    ctx.drawImage(img, 340, yPos, 120, 120);
+                    ctx.restore();
+                    
+                    yPos += 140;
+                    drawCardInfo();
+                };
+                img.src = uploadedPhotoData;
+            } else {
+                drawCardInfo();
+            }
+            
+            function drawCardInfo() {
+                // Shop Name
+                ctx.fillStyle = isDarkMode ? '#66b88f' : '#2d8659';
+                ctx.font = 'bold 24px Segoe UI';
+                ctx.fillText('Shop:', 50, yPos);
+                ctx.fillStyle = isDarkMode ? '#e0e0e0' : '#000';
+                ctx.font = '24px Segoe UI';
+                ctx.fillText(shopData.shopName, 150, yPos);
+                yPos += 50;
+                
+                // Phone
+                ctx.fillStyle = isDarkMode ? '#66b88f' : '#2d8659';
+                ctx.font = 'bold 24px Segoe UI';
+                ctx.fillText('Phone:', 50, yPos);
+                ctx.fillStyle = isDarkMode ? '#e0e0e0' : '#000';
+                ctx.font = '24px Segoe UI';
+                ctx.fillText(shopData.phone, 150, yPos);
+                yPos += 50;
+                
+                // Address
+                ctx.fillStyle = isDarkMode ? '#66b88f' : '#2d8659';
+                ctx.font = 'bold 24px Segoe UI';
+                ctx.fillText('Address:', 50, yPos);
+                yPos += 30;
+                ctx.fillStyle = isDarkMode ? '#e0e0e0' : '#000';
+                ctx.font = '20px Segoe UI';
+                ctx.fillText(shopData.address1, 50, yPos);
+                yPos += 30;
+                ctx.fillText(shopData.address2, 50, yPos);
+                yPos += 30;
+                ctx.fillText(shopData.address3, 50, yPos);
+                yPos += 50;
+                
+                // GST
+                ctx.fillStyle = isDarkMode ? '#66b88f' : '#2d8659';
+                ctx.font = 'bold 24px Segoe UI';
+                ctx.fillText('GST:', 50, yPos);
+                ctx.fillStyle = isDarkMode ? '#e0e0e0' : '#000';
+                ctx.font = '24px Segoe UI';
+                ctx.fillText(shopData.gst, 130, yPos);
+                yPos += 60;
+                
+                // QR Code
+                const qrImg = document.querySelector('#displayQR img');
+                if (qrImg) {
+                    ctx.fillStyle = 'white';
+                    ctx.fillRect(250, yPos, 300, 300);
+                    ctx.drawImage(qrImg, 250, yPos, 300, 300);
+                }
+                
+                // Download
+                const link = document.createElement('a');
+                link.download = `CropzCard_${shopData.shopName.replace(/\s+/g, '_')}.png`;
+                link.href = canvas.toDataURL('image/png');
+                link.click();
+            }
         });
     </script>
 </body>
